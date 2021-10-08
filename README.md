@@ -1,9 +1,9 @@
-# POC Analytics Logs
+# POC JSON logs on k8s 🐋
 
 This is a simple sample Python application intended to run inside a k8s cluster
-and generate analytics logs and tracing during its processing in JSON format.
+and generate JSON logs and tracing during its processing.
 
-Clone the repository and deploy the application into your k8s cluster by running:
+Deploy the application into your k8s cluster by running:
 
 ```sh
 $ kubectl apply -f app-manifest.yml
@@ -15,7 +15,7 @@ Monitor the pod logs (updated each 5 minutes):
 $ kubectl logs poc-analytics-logs
 ```
 
-## Build and install
+## Build, install and run
 
 This Python application is intended to run in a docker container inside a k8s cluster.
 

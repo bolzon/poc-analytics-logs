@@ -11,33 +11,42 @@ STATIC_FIELDS = {
     'log_type': 'app'
 }
 
+REMOVED_ATTRS = (
+    'lineno', 'levelname', 'filename', 'threadName')
 
-class NieFormatter(jsonlogger.JsonFormatter):
+RESERVED_ATTRS = (
+    'args', 'asctime', 'created', 'exc_info', 'exc_text',
+    'funcName', 'levelno', 'module', 'msecs', 'msg',
+    'name', 'pathname', 'process', 'processName', 'relativeCreated',
+    'stack_info', 'thread')
+
+class CustFormatter(jsonlogger.JsonFormatter):
     def process_log_record(self, log_record: Dict):
-        del log_record['message']
+        if log_record.get('message') is None:
+            del log_record['message']
+        if log_record.get('log_type') == 'analytics':
+            for k in REMOVED_ATTRS:
+                del log_record[k]
         return log_record
 
 
-class NieLogger(logging.getLoggerClass()):
-    def trace(self, msg: Tuple[str, Dict], exception: Exception = None):
-        if exception is not None:
-            self.error({'error': msg}, None, exc_info=exception)
-        else:
-            self.info({'info': msg})
-
+class CustLogger(logging.getLoggerClass()):
     def analytics(self, msg: Dict):
+        if type(msg) is not dict:
+            msg = {'message': str(msg)}
         msg['log_type'] = 'analytics'
         self.info(msg)
 
 
 stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(NieFormatter(timestamp=True,
+stream_handler.setFormatter(CustFormatter(timestamp=True,
+                                         reserved_attrs=RESERVED_ATTRS,
                                          static_fields=STATIC_FIELDS))
 
-logging.setLoggerClass(NieLogger)
+logging.setLoggerClass(CustLogger)
 logging.basicConfig(level=LOG_LEVEL, handlers=[stream_handler])
 
 
-def get_logger(logger_name: str) -> NieLogger:
+def get_logger(logger_name: str) -> CustLogger:
     logger = logging.getLogger(logger_name)
     return logger

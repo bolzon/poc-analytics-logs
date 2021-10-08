@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: poc-analytics-logs
+spec:
+  containers:
+    - name: poc-analytics-logs
+      image: bolzon/poc-analytics-logs

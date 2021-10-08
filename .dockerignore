@@ -1,0 +1,7 @@
+*.json
+*.md
+*.yml
+.git*
+Dockerfile
+Pip*
+.docker*

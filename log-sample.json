@@ -1,0 +1,25 @@
+{
+    "logs": [
+        {
+            "app_version": "1.0",
+            "log_type": "analytics",
+            "metadata": {
+                "msg": "sample message"
+            },
+            "timestamp": "2021-10-08T11:28:11.557566+00:00"
+        },
+        {
+            "app_version": "1.0",
+            "log_type": "app",
+            "info": "will now raise an exception",
+            "timestamp": "2021-10-08T11:28:11.557729+00:00"
+        },
+        {
+            "app_version": "1.0",
+            "log_type": "app",
+            "error": "error summing",
+            "exc_info": "Traceback (most recent call last):\n  File \"src/main.py\", line 17, in <module>\n    a = b + c\nNameError: name 'b' is not defined",
+            "timestamp": "2021-10-08T11:28:11.557828+00:00"
+        }
+    ]
+}

@@ -62,7 +62,7 @@ log = logger.get_logger(__name__)
 Usage was separated into 2 methods:
 
 1) `log.analytics` to register analytics payloads (identified by _log_type = "analytics"_ in the logs).
-2) `log.trace` to register application tracing (identified by _log_type = "app"_ in the logs).
+2) `log.[debug | error | info]` to register application tracing (identified by _log_type = "app"_ in the logs).
 
 ```python
 log.analytics({
@@ -75,13 +75,13 @@ log.analytics({
 ```
 
 ```python
-log.trace('Now app will sum 2 nums') # only message
+log.info('Now app will sum 2 nums') # only message
 a = 1 + 2
 
 try:
     a = b + c
 except Exception as ex:
-    log.trace('Error summing', ex) # message + ex
+    log.error('Error summing', ex) # message + ex
 
     # will generate a detailed stack:
     #

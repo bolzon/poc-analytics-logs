@@ -1,5 +1,7 @@
-import os
 import logging
+import os
+import sys
+
 from pythonjsonlogger import jsonlogger
 from typing import Dict, Tuple
 
@@ -38,7 +40,7 @@ class CustLogger(logging.getLoggerClass()):
         self.info(msg)
 
 
-stream_handler = logging.StreamHandler()
+stream_handler = logging.StreamHandler(sys.stdout)
 stream_handler.setFormatter(CustFormatter(timestamp=True,
                                          reserved_attrs=RESERVED_ATTRS,
                                          static_fields=STATIC_FIELDS))

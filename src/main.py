@@ -21,4 +21,4 @@ if __name__ == '__main__':
     try:
         a = b + c
     except Exception as ex:
-        log.error('error summing', exc_info=ex)
+        log.error('error summing %s', 'numbers', exc_info=ex)

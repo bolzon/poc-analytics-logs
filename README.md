@@ -47,7 +47,7 @@ $ pipenv install
 $ pipenv run python src/main.py
 ```
 
-## `NieLogger` class with samples
+## `CustLogger` class with samples
 
 To achieve JSON logs in Python I've used [python-json-logger](https://github.com/madzak/python-json-logger/) with some few customizations: parent classes `JsonFormatter` and `Logger` were slightly customized in which 2 new dedicated methods have emerged to differentiate each usage: one for analytics and other for application tracing.
 
